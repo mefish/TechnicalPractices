@@ -10,28 +10,50 @@ namespace FizzBuzzTDD
     {
         private const string FIZZTEXT = "Fizz";
         private const string BUZZTEXT = "Buzz";
+        private const int BUZZMULTIPLE = 5;
+        private const int FIZZMULTIPLE = 3;
+        private string _replacementText;
 
-        public string GetFizzAndOrBuzz(int numberToConvert = 1)
+        public string GetFizzAndOrBuzz(int numberToConvert)
         {
-            var replacement = string.Empty;
+            ClearReplacementText();
 
-            if (IsFizz(numberToConvert)) replacement += FIZZTEXT;
+            AddFizzIfFizz(numberToConvert);
+            AddBuzzIfBuzz(numberToConvert);
 
-            if (IsBuzz(numberToConvert)) replacement += BUZZTEXT;
-
-            if (replacement != string.Empty) return replacement;
+            if (AnyReplacementText()) return _replacementText;
 
             return numberToConvert.ToString();
         }
 
+        private void AddBuzzIfBuzz(int numberToConvert)
+        {
+            if (IsBuzz(numberToConvert)) _replacementText += BUZZTEXT;
+        }
+
+        private void AddFizzIfFizz(int numberToConvert)
+        {
+            if (IsFizz(numberToConvert)) _replacementText += FIZZTEXT;
+        }
+
+        private void ClearReplacementText()
+        {
+            _replacementText = string.Empty;
+        }
+
+        private bool AnyReplacementText()
+        {
+            return _replacementText != string.Empty;
+        }
+
         private static bool IsBuzz(int startNumber)
         {
-            return startNumber % 5 == 0;
+            return startNumber % BUZZMULTIPLE == 0;
         }
 
         private static bool IsFizz(int startNumber)
         {
-            return startNumber % 3 == 0;
+            return startNumber % FIZZMULTIPLE == 0;
         }
     }
 }
