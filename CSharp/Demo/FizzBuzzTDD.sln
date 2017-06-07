@@ -7,6 +7,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FizzBuzzTDD", "FizzBuzzTDD\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FizzBuzzTests", "FizzBuzzTests\FizzBuzzTests.csproj", "{82D87A80-EEC8-4D0D-8D76-DF34FFA3FBFF}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{AE783867-DCA5-45E3-AD95-1BAE133ABA7A}"
+	ProjectSection(SolutionItems) = preProject
+		FizzBuzzTDDLessonPlan.docx = FizzBuzzTDDLessonPlan.docx
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
