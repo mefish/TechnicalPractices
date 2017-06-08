@@ -50,9 +50,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\FizzBuzzTDD\FizzBuzzTDD.csproj">
+    <ProjectReference Include="..\FizzBuzzTDD\FizzBuzzMocking.csproj">
       <Project>{f6bfae79-f617-4cbd-ae28-506d22dd38f2}</Project>
-      <Name>FizzBuzzTDD</Name>
+      <Name>FizzBuzzMocking</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
