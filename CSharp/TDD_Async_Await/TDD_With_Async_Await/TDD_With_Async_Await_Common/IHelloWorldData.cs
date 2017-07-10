@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TDD_With_Async_Await_Tests
+namespace TDD_With_Async_Await_Common
 {
-    public class Class1
+    public interface IHelloWorldData
     {
+        string GetHelloWorld();
     }
 }

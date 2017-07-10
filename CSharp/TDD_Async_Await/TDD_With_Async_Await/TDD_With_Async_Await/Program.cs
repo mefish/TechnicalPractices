@@ -10,6 +10,7 @@ namespace TDD_With_Async_Await
     {
         static void Main(string[] args)
         {
+            //This simple project makes a "GET" call to a "Database" and prints the output
         }
     }
 }
