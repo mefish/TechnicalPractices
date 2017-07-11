@@ -8,6 +8,6 @@ namespace TDD_With_Async_Await_Common
 {
     public interface IHelloWorldData
     {
-        string GetHelloWorld();
+        Task<string> GetHelloWorld();
     }
 }

@@ -11,9 +11,10 @@ namespace TDD_With_Async_Await
     {
         public IHelloWorldData DataAdapter { get; set; }
 
-        public string GetHelloWorld()
+        public async Task<string> GetHelloWorld()
         {
-            return DataAdapter.GetHelloWorld();
+            var helloWorld = await DataAdapter.GetHelloWorld();
+            return helloWorld;
         }
     }
 }

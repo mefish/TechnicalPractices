@@ -1,4 +1,5 @@
-﻿using Moq;
+﻿using System.Threading.Tasks;
+using Moq;
 using NUnit.Framework;
 using TDD_With_Async_Await;
 using TDD_With_Async_Await_Common;
@@ -17,13 +18,13 @@ namespace TDD_With_Async_Await_Tests
 
             var helloWorldData = new Mock<IHelloWorldData>();
 
-            helloWorldData.Setup(x => x.GetHelloWorld()).Returns(HELLO_WORLD_TEST);
+            helloWorldData.Setup(x => x.GetHelloWorld()).Returns(Task.FromResult(HELLO_WORLD_TEST));
 
             helloWorld.DataAdapter = helloWorldData.Object;
 
             var result = helloWorld.GetHelloWorld();
 
-            Assert.AreEqual(HELLO_WORLD_TEST, result);
+            Assert.AreEqual(HELLO_WORLD_TEST, result.Result);
         }
     }
 }

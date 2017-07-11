@@ -29,7 +29,7 @@ namespace TDD_With_Async_Await_Tests
                                       UserName = "John Smith",
                                   };
 
-            fileReader.Setup(x => x.GetUserInformation()).Returns(userInformation);
+            fileReader.Setup(x => x.GetUserInformation()).Returns(Task.FromResult(userInformation));
 
             var result = helloWorldData.GetUserinformationForUserName("jsmith");
 
