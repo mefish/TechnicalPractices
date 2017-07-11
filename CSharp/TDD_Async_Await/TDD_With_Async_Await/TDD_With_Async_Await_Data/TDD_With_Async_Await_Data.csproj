@@ -4,17 +4,15 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{4C67BBAA-C827-48D7-9EA4-4211A99CDDB6}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <ProjectGuid>{50F2F0D2-9AF8-48DD-9AFA-75C95D44E58E}</ProjectGuid>
+    <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>TDD_With_Async_Await</RootNamespace>
-    <AssemblyName>TDD_With_Async_Await</AssemblyName>
+    <RootNamespace>TDD_With_Async_Await_Data</RootNamespace>
+    <AssemblyName>TDD_With_Async_Await_Data</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -24,7 +22,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -43,18 +40,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="HelloWorldApi.cs" />
-    <Compile Include="Program.cs" />
+    <Compile Include="HelloWorldDataRepository.cs" />
+    <Compile Include="IFileReader.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\TDD_With_Async_Await_Common\TDD_With_Async_Await_Common.csproj">
-      <Project>{02EF387B-6FAA-42DE-A1B1-36199E24F87E}</Project>
-      <Name>TDD_With_Async_Await_Common</Name>
-    </ProjectReference>
+    <Compile Include="UserInformation.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TDD_With_Async_Await_Tests"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TDD_With_Async_Await_Common", "TDD_With_Async_Await_Common\TDD_With_Async_Await_Common.csproj", "{02EF387B-6FAA-42DE-A1B1-36199E24F87E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TDD_With_Async_Await_Data", "TDD_With_Async_Await_Data\TDD_With_Async_Await_Data.csproj", "{50F2F0D2-9AF8-48DD-9AFA-75C95D44E58E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{02EF387B-6FAA-42DE-A1B1-36199E24F87E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{02EF387B-6FAA-42DE-A1B1-36199E24F87E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{02EF387B-6FAA-42DE-A1B1-36199E24F87E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{50F2F0D2-9AF8-48DD-9AFA-75C95D44E58E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{50F2F0D2-9AF8-48DD-9AFA-75C95D44E58E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{50F2F0D2-9AF8-48DD-9AFA-75C95D44E58E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{50F2F0D2-9AF8-48DD-9AFA-75C95D44E58E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

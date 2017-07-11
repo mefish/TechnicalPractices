@@ -7,7 +7,7 @@ using TDD_With_Async_Await_Common;
 
 namespace TDD_With_Async_Await
 {
-    public class HelloWorld
+    public class HelloWorldApi
     {
         public IHelloWorldData DataAdapter { get; set; }
 

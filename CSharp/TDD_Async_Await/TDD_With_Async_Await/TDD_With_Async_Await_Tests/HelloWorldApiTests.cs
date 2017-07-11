@@ -6,14 +6,14 @@ using TDD_With_Async_Await_Common;
 namespace TDD_With_Async_Await_Tests
 {
     [TestFixture]
-    public class BusinessLayerTests
+    public class HelloWorldApiTests
     {
         private const string HELLO_WORLD_TEST = "Hello World Test";
 
         [Test]
         public void WillCallDatabaseTest()
         {
-            var helloWorld = new HelloWorld();
+            var helloWorld = new HelloWorldApi();
 
             var helloWorldData = new Mock<IHelloWorldData>();
 

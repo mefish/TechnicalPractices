@@ -52,7 +52,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BusinessLayerTests.cs" />
+    <Compile Include="HelloWorldApiTests.cs" />
+    <Compile Include="HelloWorldDataTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -67,6 +68,13 @@
       <Project>{02ef387b-6faa-42de-a1b1-36199e24f87e}</Project>
       <Name>TDD_With_Async_Await_Common</Name>
     </ProjectReference>
+    <ProjectReference Include="..\TDD_With_Async_Await_Data\TDD_With_Async_Await_Data.csproj">
+      <Project>{50F2F0D2-9AF8-48DD-9AFA-75C95D44E58E}</Project>
+      <Name>TDD_With_Async_Await_Data</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
