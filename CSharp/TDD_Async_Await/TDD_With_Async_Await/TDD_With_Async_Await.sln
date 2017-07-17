@@ -3,13 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TDD_With_Async_Await", "TDD_With_Async_Await\TDD_With_Async_Await.csproj", "{4C67BBAA-C827-48D7-9EA4-4211A99CDDB6}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleAuthenticationServer", "TDD_With_Async_Await\SimpleAuthenticationServer.csproj", "{4C67BBAA-C827-48D7-9EA4-4211A99CDDB6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TDD_With_Async_Await_Tests", "TDD_With_Async_Await_Tests\TDD_With_Async_Await_Tests.csproj", "{F9B9A4FC-5C8E-4DFC-8826-DF971C213527}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SAS_UnitTests", "TDD_With_Async_Await_Tests\SAS_UnitTests.csproj", "{F9B9A4FC-5C8E-4DFC-8826-DF971C213527}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TDD_With_Async_Await_Common", "TDD_With_Async_Await_Common\TDD_With_Async_Await_Common.csproj", "{02EF387B-6FAA-42DE-A1B1-36199E24F87E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SAS_Common", "TDD_With_Async_Await_Common\SAS_Common.csproj", "{02EF387B-6FAA-42DE-A1B1-36199E24F87E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TDD_With_Async_Await_Data", "TDD_With_Async_Await_Data\TDD_With_Async_Await_Data.csproj", "{50F2F0D2-9AF8-48DD-9AFA-75C95D44E58E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SAS_Data", "TDD_With_Async_Await_Data\SAS_Data.csproj", "{50F2F0D2-9AF8-48DD-9AFA-75C95D44E58E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

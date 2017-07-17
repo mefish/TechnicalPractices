@@ -1,18 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Moq;
 using NUnit.Framework;
-using NUnit.Framework.Internal;
 using TDD_With_Async_Await_Common;
 using TDD_With_Async_Await_Data;
 
-namespace TDD_With_Async_Await_Tests
+namespace SAS_UnitTests
 {
     [TestFixture]
-    class HelloWorldDataTests
+    internal class HelloWorldDataTests
     {
         [Test]
         public void CanRetrieveUserInformationByUserNameSuccess()
@@ -26,7 +21,7 @@ namespace TDD_With_Async_Await_Tests
             var userInformation = new UserInformation
                                   {
                                       LoginName = "jsmith",
-                                      UserName = "John Smith",
+                                      UserName = "John Smith"
                                   };
 
             fileReader.Setup(x => x.GetUserInformation()).Returns(Task.FromResult(userInformation));

@@ -61,17 +61,17 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\TDD_With_Async_Await\TDD_With_Async_Await.csproj">
+    <ProjectReference Include="..\TDD_With_Async_Await\SimpleAuthenticationServer.csproj">
       <Project>{4C67BBAA-C827-48D7-9EA4-4211A99CDDB6}</Project>
-      <Name>TDD_With_Async_Await</Name>
+      <Name>SimpleAuthenticationServer</Name>
     </ProjectReference>
-    <ProjectReference Include="..\TDD_With_Async_Await_Common\TDD_With_Async_Await_Common.csproj">
+    <ProjectReference Include="..\TDD_With_Async_Await_Common\SAS_Common.csproj">
       <Project>{02ef387b-6faa-42de-a1b1-36199e24f87e}</Project>
-      <Name>TDD_With_Async_Await_Common</Name>
+      <Name>SAS_Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\TDD_With_Async_Await_Data\TDD_With_Async_Await_Data.csproj">
+    <ProjectReference Include="..\TDD_With_Async_Await_Data\SAS_Data.csproj">
       <Project>{50F2F0D2-9AF8-48DD-9AFA-75C95D44E58E}</Project>
-      <Name>TDD_With_Async_Await_Data</Name>
+      <Name>SAS_Data</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

@@ -5,7 +5,7 @@ using TDD_With_Async_Await;
 using TDD_With_Async_Await_Common;
 using TDD_With_Async_Await_Data;
 
-namespace TDD_With_Async_Await_Tests
+namespace SAS_UnitTests
 {
     [TestFixture]
     public class HelloWorldApiTests
