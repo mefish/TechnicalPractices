@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SAS_Common", "TDD_With_Asyn
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SAS_Data", "TDD_With_Async_Await_Data\SAS_Data.csproj", "{50F2F0D2-9AF8-48DD-9AFA-75C95D44E58E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SAS_Api", "SAS_Api\SAS_Api.csproj", "{F367672F-07E9-42FD-8838-9D921DA136C1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{50F2F0D2-9AF8-48DD-9AFA-75C95D44E58E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{50F2F0D2-9AF8-48DD-9AFA-75C95D44E58E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{50F2F0D2-9AF8-48DD-9AFA-75C95D44E58E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F367672F-07E9-42FD-8838-9D921DA136C1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F367672F-07E9-42FD-8838-9D921DA136C1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F367672F-07E9-42FD-8838-9D921DA136C1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F367672F-07E9-42FD-8838-9D921DA136C1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -4,17 +4,15 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{4C67BBAA-C827-48D7-9EA4-4211A99CDDB6}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <ProjectGuid>{F367672F-07E9-42FD-8838-9D921DA136C1}</ProjectGuid>
+    <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>TDD_With_Async_Await</RootNamespace>
-    <AssemblyName>TDD_With_Async_Await</AssemblyName>
+    <RootNamespace>SAS_Api</RootNamespace>
+    <AssemblyName>SAS_Api</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -24,7 +22,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -43,19 +40,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Program.cs" />
+    <Compile Include="HelloWorldApi.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\SAS_Api\SAS_Api.csproj">
-      <Project>{f367672f-07e9-42fd-8838-9d921da136c1}</Project>
-      <Name>SAS_Api</Name>
-    </ProjectReference>
     <ProjectReference Include="..\TDD_With_Async_Await_Common\SAS_Common.csproj">
-      <Project>{02EF387B-6FAA-42DE-A1B1-36199E24F87E}</Project>
+      <Project>{02ef387b-6faa-42de-a1b1-36199e24f87e}</Project>
       <Name>SAS_Common</Name>
     </ProjectReference>
   </ItemGroup>
