@@ -53,6 +53,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CommandTests.cs" />
     <Compile Include="HelloWorldApiTests.cs" />
     <Compile Include="HelloWorldDataTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -64,6 +65,10 @@
     <ProjectReference Include="..\SAS_Api\SAS_Api.csproj">
       <Project>{F367672F-07E9-42FD-8838-9D921DA136C1}</Project>
       <Name>SAS_Api</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TDD_With_Async_Await\SimpleAuthenticationServer.csproj">
+      <Project>{4C67BBAA-C827-48D7-9EA4-4211A99CDDB6}</Project>
+      <Name>SimpleAuthenticationServer</Name>
     </ProjectReference>
     <ProjectReference Include="..\TDD_With_Async_Await_Common\SAS_Common.csproj">
       <Project>{02ef387b-6faa-42de-a1b1-36199e24f87e}</Project>

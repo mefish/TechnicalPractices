@@ -1,15 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using TDD_With_Async_Await_Common;
 
 namespace TDD_With_Async_Await
 {
-    class Program
+    internal class Program
     {
-        static void Main(string[] args)
+        private const string READ_PROMPT = "console> ";
+
+        private static void Main(string[] args)
         {
             Console.Title = typeof(Program).Name;
 
@@ -25,7 +22,7 @@ namespace TDD_With_Async_Await
 
                 try
                 {
-                    string result = Execute(consoleInput);
+                    var result = Execute(consoleInput);
 
                     WriteToConsole(result);
                 }
@@ -36,7 +33,6 @@ namespace TDD_With_Async_Await
             }
         }
 
-        private const string READ_PROMPT = "console> ";
         private static string ReadFromConsole(string promptMessage = "")
         {
             Console.WriteLine(READ_PROMPT + promptMessage);
@@ -50,6 +46,7 @@ namespace TDD_With_Async_Await
 
         private static string Execute(string command)
         {
+            if (command == "test") return new TestAuthenticationCommand().Execute();
             return $"Executed the {command} command";
         }
 
