@@ -6,10 +6,12 @@ using System.Threading.Tasks;
 
 namespace TDD_With_Async_Await_Common
 {
-    public interface IHelloWorldData
+    public class PostResult
     {
-        Task<string> GetHelloWorld();
-
-        Task CreateUser(string userLoginName, string userUserName);
+        public bool WasSuccessful
+        {
+            get { return true; }
+            set { throw new NotImplementedException(); }
+        }
     }
 }

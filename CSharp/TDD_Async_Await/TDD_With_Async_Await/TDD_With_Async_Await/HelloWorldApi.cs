@@ -16,5 +16,11 @@ namespace TDD_With_Async_Await
             var helloWorld = await DataAdapter.GetHelloWorld();
             return helloWorld;
         }
+
+        public async Task<PostResult> CreateUser(string userDataLoginName, string userDataUserName)
+        {
+            await DataAdapter.CreateUser(userDataLoginName, userDataUserName);
+            return new PostResult();
+        }
     }
 }

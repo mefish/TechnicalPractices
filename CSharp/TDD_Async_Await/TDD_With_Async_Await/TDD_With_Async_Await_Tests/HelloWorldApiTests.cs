@@ -3,6 +3,7 @@ using Moq;
 using NUnit.Framework;
 using TDD_With_Async_Await;
 using TDD_With_Async_Await_Common;
+using TDD_With_Async_Await_Data;
 
 namespace TDD_With_Async_Await_Tests
 {
@@ -25,6 +26,28 @@ namespace TDD_With_Async_Await_Tests
             var result = helloWorld.GetHelloWorld();
 
             Assert.AreEqual(HELLO_WORLD_TEST, result.Result);
+        }
+
+        [Test]
+        public async Task CanCreateAUser()
+        {
+            var helloWorld = new HelloWorldApi();
+
+            var helloWorldData = new Mock<IHelloWorldData>();
+
+            var userData = new UserInformation
+                           {
+                               LoginName = "Login name",
+                               UserName = "Tammy Smith"
+                           };
+
+            helloWorldData.Setup(x => x.CreateUser(userData.LoginName, userData.UserName)).Returns(Task.CompletedTask);
+
+            helloWorld.DataAdapter = helloWorldData.Object;
+
+            var result = await helloWorld.CreateUser(userData.LoginName, userData.UserName);
+
+            Assert.IsTrue(result.WasSuccessful);
         }
     }
 }
