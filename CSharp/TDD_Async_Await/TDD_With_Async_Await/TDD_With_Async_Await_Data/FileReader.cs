@@ -10,9 +10,9 @@ namespace TDD_With_Async_Await_Data
 {
     class FileReader : IFileReader
     {
-        public async Task<UserInformation> GetUserInformation()
+        public Task WriteToFile(string userInformation)
         {
-            return new UserInformation();
+            throw new NotImplementedException();
         }
     }
 }
