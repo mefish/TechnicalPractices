@@ -54,7 +54,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CommandTests.cs" />
-    <Compile Include="HelloWorldApiTests.cs" />
+    <Compile Include="SimpleAuthenticationApiTests.cs" />
     <Compile Include="HelloWorldDataTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

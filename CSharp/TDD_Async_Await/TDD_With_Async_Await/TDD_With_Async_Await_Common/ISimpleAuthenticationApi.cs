@@ -2,10 +2,10 @@
 
 namespace TDD_With_Async_Await_Common
 {
-    public interface IHelloWorldData
+    public interface ISimpleAuthenticationApi
     {
         Task<string> GetHelloWorld();
 
-        Task CreateUser(string userLoginName);
+        Task<IPostResult> CreateUser(string loginName);
     }
 }

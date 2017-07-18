@@ -8,14 +8,14 @@ using TDD_With_Async_Await_Data;
 namespace SAS_UnitTests
 {
     [TestFixture]
-    public class HelloWorldApiTests
+    public class SimpleAuthenticationApiTests
     {
         private const string HELLO_WORLD_TEST = "Hello World Test";
 
         [Test]
         public void WillCallDatabaseTest()
         {
-            var helloWorld = new HelloWorldApi();
+            var helloWorld = new SimpleAuthenticationServerApi();
 
             var helloWorldData = new Mock<IHelloWorldData>();
 
@@ -29,9 +29,9 @@ namespace SAS_UnitTests
         }
 
         [Test]
-        public async Task CanCreateAUser()
+        public async Task CanCreateAUserWithLoginName_Success()
         {
-            var helloWorld = new HelloWorldApi();
+            var helloWorld = new SimpleAuthenticationServerApi();
 
             var helloWorldData = new Mock<IHelloWorldData>();
 
@@ -41,11 +41,11 @@ namespace SAS_UnitTests
                                UserName = "Tammy Smith"
                            };
 
-            helloWorldData.Setup(x => x.CreateUser(userData.LoginName, userData.UserName)).Returns(Task.CompletedTask);
+            helloWorldData.Setup(x => x.CreateUser(userData.LoginName)).Returns(Task.CompletedTask);
 
             helloWorld.DataAdapter = helloWorldData.Object;
 
-            var result = await helloWorld.CreateUser(userData.LoginName, userData.UserName);
+            var result = await helloWorld.CreateUser(userData.LoginName);
 
             Assert.IsTrue(result.WasSuccessful);
         }

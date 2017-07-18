@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using TDD_With_Async_Await_Common;
 
 namespace TDD_With_Async_Await
 {
-    public class HelloWorldApi
+    public class SimpleAuthenticationServerApi : ISimpleAuthenticationApi
     {
         public IHelloWorldData DataAdapter { get; set; }
 
@@ -17,9 +13,9 @@ namespace TDD_With_Async_Await
             return helloWorld;
         }
 
-        public async Task<PostResult> CreateUser(string userDataLoginName, string userDataUserName)
+        public async Task<IPostResult> CreateUser(string loginName)
         {
-            await DataAdapter.CreateUser(userDataLoginName, userDataUserName);
+            await DataAdapter.CreateUser(loginName);
             return new PostResult();
         }
     }
