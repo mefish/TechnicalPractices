@@ -46,8 +46,15 @@ namespace TDD_With_Async_Await
 
         private static string Execute(string command)
         {
-            if (command == "test") return new TestAuthenticationCommand().Execute();
-            return $"Executed the {command} command";
+            switch (command)
+            {
+                case "test":
+                    return new TestAuthenticationCommand().Execute().Result;
+                case "createuser":
+                    return new CreateUserCommand().Execute().IsCompleted.ToString();
+                default:
+                    return $"Executed the {command} command";
+            }
         }
 
         public void DisplayToUser(string stringToDisplay)

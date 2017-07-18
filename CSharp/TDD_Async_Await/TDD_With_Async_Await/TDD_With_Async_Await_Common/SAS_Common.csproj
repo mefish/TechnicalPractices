@@ -41,9 +41,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="IFileReader.cs" />
-    <Compile Include="IHelloWorldData.cs" />
+    <Compile Include="ISimpleAuthenticationDataStore.cs" />
     <Compile Include="IPostResult.cs" />
-    <Compile Include="ISimpleAuthenticationApi.cs" />
     <Compile Include="PostResult.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
