@@ -14,5 +14,10 @@ namespace PokerHands
         }
 
         public IList<Card> Cards { get; set; }
+
+        public bool IsFlush
+        {
+            get { return Cards.All(i => i.Suit == Cards.Select(j => j.Suit).FirstOrDefault()); }
+        }
     }
 }
