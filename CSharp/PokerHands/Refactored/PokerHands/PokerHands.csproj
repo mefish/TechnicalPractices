@@ -41,8 +41,9 @@
   <ItemGroup>
     <Compile Include="CardValue.cs" />
     <Compile Include="Card.cs" />
-    <Compile Include="PlayerHand.cs" />
+    <Compile Include="OrderedCardList.cs" />
     <Compile Include="HandRanker.cs" />
+    <Compile Include="PlayerHand.cs" />
     <Compile Include="PlayerHandFormatter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Suit.cs" />

@@ -1,19 +1,18 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace PokerHands
 {
-    internal class PlayerHand
+    class PlayerHand
     {
-        public CardValue Value { get; set; }
-        public int Count { get; set; }
-        public List<Card> PlayerCards { get; set; }
-
-        public static PlayerHand CreateHandFromCards(List<Card> playerHand)
+        public PlayerHand(IList<Card> cardList)
         {
-            return new PlayerHand
-                   {
-                           PlayerCards = playerHand
-                   };
+            Cards = cardList;
         }
+
+        public IList<Card> Cards { get; set; }
     }
 }

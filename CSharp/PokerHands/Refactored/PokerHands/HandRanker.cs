@@ -5,11 +5,12 @@ namespace PokerHands
 {
     public class HandRanker
     {
-        private IList<Card> _hand1;
-        private List<PlayerHand> _hand1ByValues;
+//        private IList<Card> _hand1;
+        private PlayerHand _hand1;
+        private List<OrderedCardList> _hand1ByValues;
         private bool _hand1Flush;
         private IList<Card> _hand2;
-        private List<PlayerHand> _hand2ByValues;
+        private List<OrderedCardList> _hand2ByValues;
         private bool _hand2Flush;
         private bool _isHand1AStraight;
         private bool _isHand2AStraight;
@@ -18,7 +19,7 @@ namespace PokerHands
 
         public int RankHands(IList<Card> hand1, IList<Card> hand2)
         {
-            _hand1 = hand1;
+            _hand1 = new PlayerHand(hand1);
 
             _hand2 = hand2;
 
@@ -26,7 +27,7 @@ namespace PokerHands
 
             _hand2Hand = new PlayerHandFormatter(hand2);
 
-            _hand1ByValues = GetHandByValues(_hand1);
+            _hand1ByValues = GetHandByValues(_hand1.Cards);
 
             _hand2ByValues = GetHandByValues(_hand2);
 
@@ -34,7 +35,7 @@ namespace PokerHands
 
             _isHand2AStraight = _hand2Hand.IsStraight;
 
-            _hand1Flush = _hand1.All(i => i.Suit == _hand1.Select(j => j.Suit).FirstOrDefault());
+            _hand1Flush = _hand1.Cards.All(i => i.Suit == _hand1.Cards.Select(j => j.Suit).FirstOrDefault());
             _hand2Flush = _hand2.All(i => i.Suit == _hand2.Select(j => j.Suit).FirstOrDefault());
 
             if ((_hand1Flush && _isHand1AStraight) || (_hand2Flush && _isHand2AStraight)) return IHandleSomeWierdKickerRule();
@@ -43,7 +44,7 @@ namespace PokerHands
 
             if (IsFullHouse())
             {
-                if ((_hand1ByValues.Any(i => i.Count == 3) && _hand1ByValues.Any(i => i.Count == 2)) && !(_hand2ByValues.Any(i => i.Count == 3) && _hand2ByValues.Any(i => i.Count == 2))) return 1;
+                if ((_hand1ByValues.Any(i => i.Count == 3) && _hand1ByValues.Any(i => i.Count == 2)) &&  !(_hand2ByValues.Any(i => i.Count == 3) && _hand2ByValues.Any(i => i.Count == 2))) return 1;
 
                 if (!(_hand1ByValues.Any(i => i.Count == 3) && _hand1ByValues.Any(i => i.Count == 2))) return 2;
             }
@@ -95,61 +96,61 @@ namespace PokerHands
         private int HandleHighCard()
         {
             // No Pairs high card wins
-            if (_hand1.Max(i => (int)i.CardValue) > _hand2.Max(i => (int)i.CardValue)) return 1;
+            if (_hand1.Cards.Max(i => (int)i.CardValue) > _hand2.Max(i => (int)i.CardValue)) return 1;
 
-            if (_hand1.Max(i => (int)i.CardValue) < _hand2.Max(i => (int)i.CardValue)) return 2;
+            if (_hand1.Cards.Max(i => (int)i.CardValue) < _hand2.Max(i => (int)i.CardValue)) return 2;
 
             // Have Same High Card Must remove the high card and compare  4 Cards Left
-            var hand1MaxCard = _hand1.FirstOrDefault(j => (int)j.CardValue == _hand1.Max(i => (int)i.CardValue));
+            var hand1MaxCard = _hand1.Cards.FirstOrDefault(j => (int)j.CardValue == _hand1.Cards.Max(i => (int)i.CardValue));
 
-            _hand1.Remove(hand1MaxCard);
+            _hand1.Cards.Remove(hand1MaxCard);
 
             var hand2MaxCard = _hand2.FirstOrDefault(j => (int)j.CardValue == _hand2.Max(i => (int)i.CardValue));
 
             _hand2.Remove(hand2MaxCard);
 
-            if (_hand1.Max(i => (int)i.CardValue) > _hand2.Max(i => (int)i.CardValue)) return 1;
+            if (_hand1.Cards.Max(i => (int)i.CardValue) > _hand2.Max(i => (int)i.CardValue)) return 1;
 
-            if (_hand1.Max(i => (int)i.CardValue) < _hand2.Max(i => (int)i.CardValue)) return 2;
+            if (_hand1.Cards.Max(i => (int)i.CardValue) < _hand2.Max(i => (int)i.CardValue)) return 2;
 
             // Have Same High Card Must remove the high card and compare 3 Cards Left
-            hand1MaxCard = _hand1.FirstOrDefault(j => (int)j.CardValue == _hand1.Max(i => (int)i.CardValue));
+            hand1MaxCard = _hand1.Cards.FirstOrDefault(j => (int)j.CardValue == _hand1.Cards.Max(i => (int)i.CardValue));
 
-            _hand1.Remove(hand1MaxCard);
+            _hand1.Cards.Remove(hand1MaxCard);
 
             hand2MaxCard = _hand2.FirstOrDefault(j => (int)j.CardValue == _hand2.Max(i => (int)i.CardValue));
 
             _hand2.Remove(hand2MaxCard);
 
-            if (_hand1.Max(i => (int)i.CardValue) > _hand2.Max(i => (int)i.CardValue)) return 1;
+            if (_hand1.Cards.Max(i => (int)i.CardValue) > _hand2.Max(i => (int)i.CardValue)) return 1;
 
-            if (_hand1.Max(i => (int)i.CardValue) < _hand2.Max(i => (int)i.CardValue)) return 2;
+            if (_hand1.Cards.Max(i => (int)i.CardValue) < _hand2.Max(i => (int)i.CardValue)) return 2;
 
             // Have Same High Card Must remove the high card and compare 2 Cards Left
-            hand1MaxCard = _hand1.FirstOrDefault(j => (int)j.CardValue == _hand1.Max(i => (int)i.CardValue));
+            hand1MaxCard = _hand1.Cards.FirstOrDefault(j => (int)j.CardValue == _hand1.Cards.Max(i => (int)i.CardValue));
 
-            _hand1.Remove(hand1MaxCard);
+            _hand1.Cards.Remove(hand1MaxCard);
 
             hand2MaxCard = _hand2.FirstOrDefault(j => (int)j.CardValue == _hand2.Max(i => (int)i.CardValue));
 
             _hand2.Remove(hand2MaxCard);
 
-            if (_hand1.Max(i => (int)i.CardValue) > _hand2.Max(i => (int)i.CardValue)) return 1;
+            if (_hand1.Cards.Max(i => (int)i.CardValue) > _hand2.Max(i => (int)i.CardValue)) return 1;
 
-            if (_hand1.Max(i => (int)i.CardValue) < _hand2.Max(i => (int)i.CardValue)) return 2;
+            if (_hand1.Cards.Max(i => (int)i.CardValue) < _hand2.Max(i => (int)i.CardValue)) return 2;
 
             // Have Same High Card Must remove the high card and compare 1 Cards Left
-            hand1MaxCard = _hand1.FirstOrDefault(j => (int)j.CardValue == _hand1.Max(i => (int)i.CardValue));
+            hand1MaxCard = _hand1.Cards.FirstOrDefault(j => (int)j.CardValue == _hand1.Cards.Max(i => (int)i.CardValue));
 
-            _hand1.Remove(hand1MaxCard);
+            _hand1.Cards.Remove(hand1MaxCard);
 
             hand2MaxCard = _hand2.FirstOrDefault(j => (int)j.CardValue == _hand2.Max(i => (int)i.CardValue));
 
             _hand2.Remove(hand2MaxCard);
 
-            if (_hand1.Max(i => (int)i.CardValue) > _hand2.Max(i => (int)i.CardValue)) return 1;
+            if (_hand1.Cards.Max(i => (int)i.CardValue) > _hand2.Max(i => (int)i.CardValue)) return 1;
 
-            if (_hand1.Max(i => (int)i.CardValue) < _hand2.Max(i => (int)i.CardValue)) return 2;
+            if (_hand1.Cards.Max(i => (int)i.CardValue) < _hand2.Max(i => (int)i.CardValue)) return 2;
 
             return -1;
         }
@@ -168,39 +169,39 @@ namespace PokerHands
             if (hand1PairValue < hand2PairValue) return 2;
 
             // Remove Pair Values 3 Cards Left
-            _hand1 = _hand1.Where(i => i.CardValue != hand1PairValue).ToList();
+            _hand1 = new PlayerHand(_hand1.Cards.Where(i => i.CardValue != hand1PairValue).ToList());
             _hand2 = _hand2.Where(i => i.CardValue != hand1PairValue).ToList();
 
             // They have the same pair must compare kickers
-            if (_hand1.Max(i => (int)i.CardValue) > _hand2.Max(i => (int)i.CardValue)) return 1;
+            if (_hand1.Cards.Max(i => (int)i.CardValue) > _hand2.Max(i => (int)i.CardValue)) return 1;
 
-            if (_hand1.Max(i => (int)i.CardValue) < _hand2.Max(i => (int)i.CardValue)) return 2;
+            if (_hand1.Cards.Max(i => (int)i.CardValue) < _hand2.Max(i => (int)i.CardValue)) return 2;
 
             // They have the same kicker must remove max card 2 Cards Left
-            var hand1MaxCardPair = _hand1.FirstOrDefault(j => (int)j.CardValue == _hand1.Max(i => (int)i.CardValue));
+            var hand1MaxCardPair = _hand1.Cards.FirstOrDefault(j => (int)j.CardValue == _hand1.Cards.Max(i => (int)i.CardValue));
 
-            _hand1.Remove(hand1MaxCardPair);
+            _hand1.Cards.Remove(hand1MaxCardPair);
 
             var hand2MaxCardPair = _hand2.FirstOrDefault(j => (int)j.CardValue == _hand2.Max(i => (int)i.CardValue));
 
             _hand2.Remove(hand2MaxCardPair);
 
-            if (_hand1.Max(i => (int)i.CardValue) > _hand2.Max(i => (int)i.CardValue)) return 1;
+            if (_hand1.Cards.Max(i => (int)i.CardValue) > _hand2.Max(i => (int)i.CardValue)) return 1;
 
-            if (_hand1.Max(i => (int)i.CardValue) < _hand2.Max(i => (int)i.CardValue)) return 2;
+            if (_hand1.Cards.Max(i => (int)i.CardValue) < _hand2.Max(i => (int)i.CardValue)) return 2;
 
             // They have the same kicker must remove max card 1 Cards Left
-            hand1MaxCardPair = _hand1.FirstOrDefault(j => (int)j.CardValue == _hand1.Max(i => (int)i.CardValue));
+            hand1MaxCardPair = _hand1.Cards.FirstOrDefault(j => (int)j.CardValue == _hand1.Cards.Max(i => (int)i.CardValue));
 
-            _hand1.Remove(hand1MaxCardPair);
+            _hand1.Cards.Remove(hand1MaxCardPair);
 
             hand2MaxCardPair = _hand2.FirstOrDefault(j => (int)j.CardValue == _hand2.Max(i => (int)i.CardValue));
 
             _hand2.Remove(hand2MaxCardPair);
 
-            if (_hand1.Max(i => (int)i.CardValue) > _hand2.Max(i => (int)i.CardValue)) return 1;
+            if (_hand1.Cards.Max(i => (int)i.CardValue) > _hand2.Max(i => (int)i.CardValue)) return 1;
 
-            if (_hand1.Max(i => (int)i.CardValue) < _hand2.Max(i => (int)i.CardValue)) return 2;
+            if (_hand1.Cards.Max(i => (int)i.CardValue) < _hand2.Max(i => (int)i.CardValue)) return 2;
             return -1;
         }
 
@@ -210,12 +211,12 @@ namespace PokerHands
 
             if (!_isHand1AStraight) return 2;
 
-            var hand1HighCard = GetHighestCard(_hand1);
+            var hand1HighCard = GetHighestCard(_hand1.Cards);
             var hand2HighCard = GetHighestCard(_hand2);
 
             if (hand1HighCard == 12)
             {
-                var lowCard = GetLowestCard(_hand1);
+                var lowCard = GetLowestCard(_hand1.Cards);
 
                 if (lowCard == 0) hand1HighCard = 3;
             }
@@ -246,12 +247,12 @@ namespace PokerHands
 
         private int IHandleSomeWierdKickerRule()
         {
-            var hand1MaxValue = GetHighestCard(_hand1);
+            var hand1MaxValue = GetHighestCard(_hand1.Cards);
             var hand2MaxValue = GetHighestCard(_hand2);
 
             if (hand1MaxValue == GetValueFromCard(CardValue.Ace))
             {
-                var lowCard = GetLowestCard(_hand1);
+                var lowCard = GetLowestCard(_hand1.Cards);
 
                 if (lowCard == 0) hand1MaxValue = 3;
             }
@@ -289,7 +290,7 @@ namespace PokerHands
             return HasNumberOfLikeSuits(_hand1ByValues, i1) || _hand2ByValues.Any(i => i.Count == i1);
         }
 
-        private static bool HasNumberOfLikeSuits(IEnumerable<PlayerHand> hand1ByValues, int i1)
+        private static bool HasNumberOfLikeSuits(IEnumerable<OrderedCardList> hand1ByValues, int i1)
         {
             return hand1ByValues.Any(i => i.Count == i1);
         }
@@ -309,9 +310,9 @@ namespace PokerHands
             return iList.Max(x => GetValueFromCard(x.CardValue));
         }
 
-        private static List<PlayerHand> GetHandByValues(IEnumerable<Card> hand1)
+        private static List<OrderedCardList> GetHandByValues(IEnumerable<Card> hand1)
         {
-            return hand1.GroupBy(i => i.CardValue).Select(g => new PlayerHand()
+            return hand1.GroupBy(i => i.CardValue).Select(g => new OrderedCardList()
                                                                {
                                                                        Value = g.Key,
                                                                        Count = g.Select(v => (int)v.CardValue).Count()

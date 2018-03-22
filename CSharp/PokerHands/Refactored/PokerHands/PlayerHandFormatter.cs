@@ -5,7 +5,7 @@ namespace PokerHands
 {
     internal class PlayerHandFormatter
     {
-        private readonly List<PlayerHand> _cardsByValues;
+        private readonly List<OrderedCardList> _cardsByValues;
         private readonly IEnumerable<Card> _hand;
 
         public PlayerHandFormatter(IEnumerable<Card> hand1)
@@ -25,9 +25,9 @@ namespace PokerHands
             get { return _hand.Min(x => GetValueFromCard(x.CardValue)); }
         }
 
-        private static List<PlayerHand> GetHandByValues(IEnumerable<Card> hand1)
+        private static List<OrderedCardList> GetHandByValues(IEnumerable<Card> hand1)
         {
-            return hand1.GroupBy(i => i.CardValue).Select(g => new PlayerHand()
+            return hand1.GroupBy(i => i.CardValue).Select(g => new OrderedCardList()
                                                                {
                                                                        Value = g.Key,
                                                                        Count = g.Select(v => (int)v.CardValue).Count()
