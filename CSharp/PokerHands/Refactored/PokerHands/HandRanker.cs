@@ -5,12 +5,8 @@ namespace PokerHands
 {
     public class HandRanker
     {
-//        private IList<Card> _hand1;
         private PlayerHand _hand1;
-        private List<OrderedCardList> _hand1ByValues;
-//        private IList<Card> _hand2;
         private PlayerHand _hand2;
-        private List<OrderedCardList> _hand2ByValues;
         private bool _isHand1AStraight;
         private bool _isHand2AStraight;
         private PlayerHandFormatter _hand1Hand;
@@ -26,10 +22,6 @@ namespace PokerHands
 
             _hand2Hand = new PlayerHandFormatter(hand2);
 
-            _hand1ByValues = GetHandByValues(_hand1.Cards);
-
-            _hand2ByValues = GetHandByValues(_hand2.Cards);
-
             _isHand1AStraight = _hand1Hand.IsStraight;
 
             _isHand2AStraight = _hand2Hand.IsStraight;
@@ -40,9 +32,9 @@ namespace PokerHands
 
             if (IsFullHouse())
             {
-                if ((_hand1ByValues.Any(i => i.Count == 3) && _hand1ByValues.Any(i => i.Count == 2)) &&  !(_hand2ByValues.Any(i => i.Count == 3) && _hand2ByValues.Any(i => i.Count == 2))) return 1;
+                if ((_hand1.GetHandByValues().Any(i => i.Count == 3) && _hand1.GetHandByValues().Any(i => i.Count == 2)) &&  !(_hand2.GetHandByValues().Any(i => i.Count == 3) && _hand2.GetHandByValues().Any(i => i.Count == 2))) return 1;
 
-                if (!(_hand1ByValues.Any(i => i.Count == 3) && _hand1ByValues.Any(i => i.Count == 2))) return 2;
+                if (!(_hand1.GetHandByValues().Any(i => i.Count == 3) && _hand1.GetHandByValues().Any(i => i.Count == 2))) return 2;
             }
 
             if (_hand1.IsFlush || _hand2.IsFlush)
@@ -56,8 +48,8 @@ namespace PokerHands
 
             if (APlayerHasSomeOfAKind(3))
             {
-                var hand1ThreeOfAKindValue = _hand1ByValues.Where(i => i.Count == 3).Select(i => i.Value).FirstOrDefault();
-                var hand2ThreeOfAKindValue = _hand2ByValues.Where(i => i.Count == 3).Select(i => i.Value).FirstOrDefault();
+                var hand1ThreeOfAKindValue = _hand1.GetHandByValues().Where(i => i.Count == 3).Select(i => i.Value).FirstOrDefault();
+                var hand2ThreeOfAKindValue = _hand2.GetHandByValues().Where(i => i.Count == 3).Select(i => i.Value).FirstOrDefault();
 
                 if (hand1ThreeOfAKindValue > hand2ThreeOfAKindValue) return 1;
 
@@ -65,23 +57,19 @@ namespace PokerHands
             }
 
             // One of the hands have 2 pairs
-            if (_hand1ByValues.Count(i => i.Count == 2) == 2 || _hand2ByValues.Count(i => i.Count == 2) == 2)
+            if (_hand1.GetHandByValues().Count(i => i.Count == 2) == 2 || _hand2.GetHandByValues().Count(i => i.Count == 2) == 2)
             {
-                if (_hand1ByValues.Count(i => i.Count == 2) == 2 && _hand2ByValues.Count(i => i.Count == 2) != 2) return 1;
+                if (_hand1.GetHandByValues().Count(i => i.Count == 2) == 2 && _hand2.GetHandByValues().Count(i => i.Count == 2) != 2) return 1;
 
-                if (_hand2ByValues.Count(i => i.Count == 2) == 2 && _hand1ByValues.Count(i => i.Count == 2) != 2) return 2;
+                if (_hand2.GetHandByValues().Count(i => i.Count == 2) == 2 && _hand1.GetHandByValues().Count(i => i.Count == 2) != 2) return 2;
 
                 // Both Have 2 Pair find Highest Pair Value
-                var hand1HighestPairValue = _hand1ByValues.Where(i => i.Count == 2).OrderByDescending(i => i.Value).Select(i => i.Value).FirstOrDefault();
-                var hand2HighestPairValue = _hand2ByValues.Where(i => i.Count == 2).OrderByDescending(i => i.Value).Select(i => i.Value).FirstOrDefault();
+                var hand1HighestPairValue = _hand1.GetHandByValues().Where(i => i.Count == 2).OrderByDescending(i => i.Value).Select(i => i.Value).FirstOrDefault();
+                var hand2HighestPairValue = _hand2.GetHandByValues().Where(i => i.Count == 2).OrderByDescending(i => i.Value).Select(i => i.Value).FirstOrDefault();
 
                 if (hand1HighestPairValue > hand2HighestPairValue) return 1;
 
                 if (hand1HighestPairValue < hand2HighestPairValue) return 2;
-
-                // Same Highest Pair must compare next
-                _hand1ByValues = _hand1ByValues.Where(i => i.Value != hand1HighestPairValue).ToList();
-                _hand2ByValues = _hand2ByValues.Where(i => i.Value != hand2HighestPairValue).ToList();
             }
 
             if (APlayerHasSomeOfAKind(2)) return HandlePairs();
@@ -153,12 +141,12 @@ namespace PokerHands
 
         private int HandlePairs()
         {
-            if (_hand1ByValues.Any(i => i.Count == 2) && _hand2ByValues.All(i => i.Count != 2)) return 1;
+            if (_hand1.GetHandByValues().Any(i => i.Count == 2) && _hand2.GetHandByValues().All(i => i.Count != 2)) return 1;
 
-            if (_hand1ByValues.All(i => i.Count != 2) && _hand2ByValues.Any(i => i.Count == 2)) return 2;
+            if (_hand1.GetHandByValues().All(i => i.Count != 2) && _hand2.GetHandByValues().Any(i => i.Count == 2)) return 2;
 
-            var hand1PairValue = _hand1ByValues.Where(i => i.Count == 2).Select(i => i.Value).FirstOrDefault();
-            var hand2PairValue = _hand2ByValues.Where(i => i.Count == 2).Select(i => i.Value).FirstOrDefault();
+            var hand1PairValue = _hand1.GetHandByValues().Where(i => i.Count == 2).Select(i => i.Value).FirstOrDefault();
+            var hand2PairValue = _hand2.GetHandByValues().Where(i => i.Count == 2).Select(i => i.Value).FirstOrDefault();
 
             if (hand1PairValue > hand2PairValue) return 1;
 
@@ -219,7 +207,7 @@ namespace PokerHands
 
             if (hand2HighCard == 12)
             {
-                var lowCard = _hand2ByValues.OrderBy(i => i.Value).Select(i => (int)i.Value).FirstOrDefault();
+                var lowCard = _hand2.GetHandByValues().OrderBy(i => i.Value).Select(i => (int)i.Value).FirstOrDefault();
 
                 if (lowCard == 0) hand2HighCard = 3;
             }
@@ -238,7 +226,7 @@ namespace PokerHands
 
         private bool IsFullHouse()
         {
-            return (HasNumberOfLikeSuits(_hand1ByValues, 3) && HasNumberOfLikeSuits(_hand1ByValues, 2) || (HasNumberOfLikeSuits(_hand2ByValues, 3) && HasNumberOfLikeSuits(_hand2ByValues, 2)));
+            return (HasNumberOfLikeSuits(_hand1.GetHandByValues(), 3) && HasNumberOfLikeSuits(_hand1.GetHandByValues(), 2) || (HasNumberOfLikeSuits(_hand2.GetHandByValues(), 3) && HasNumberOfLikeSuits(_hand2.GetHandByValues(), 2)));
         }
 
         private int IHandleSomeWierdKickerRule()
@@ -268,12 +256,12 @@ namespace PokerHands
 
         private int HandleFourOfAKind()
         {
-            if (_hand1ByValues.Any(i => i.Count == 4) && _hand2ByValues.All(i => i.Count != 4)) return 1;
+            if (_hand1.GetHandByValues().Any(i => i.Count == 4) && _hand2.GetHandByValues().All(i => i.Count != 4)) return 1;
 
-            if (_hand2ByValues.Any(i => i.Count == 4) && _hand1ByValues.All(i => i.Count != 4)) return 2;
+            if (_hand2.GetHandByValues().Any(i => i.Count == 4) && _hand1.GetHandByValues().All(i => i.Count != 4)) return 2;
 
-            var hand1FourOfAKindValue = _hand1ByValues.Where(i => i.Count == 4).Select(i => (int)i.Value).FirstOrDefault();
-            var hand2FourOfAKindValue = _hand2ByValues.Where(i => i.Count == 4).Select(i => (int)i.Value).FirstOrDefault();
+            var hand1FourOfAKindValue = _hand1.GetHandByValues().Where(i => i.Count == 4).Select(i => (int)i.Value).FirstOrDefault();
+            var hand2FourOfAKindValue = _hand2.GetHandByValues().Where(i => i.Count == 4).Select(i => (int)i.Value).FirstOrDefault();
 
             if (hand1FourOfAKindValue > hand2FourOfAKindValue) return 1;
 
@@ -283,7 +271,7 @@ namespace PokerHands
 
         private bool APlayerHasSomeOfAKind(int i1)
         {
-            return HasNumberOfLikeSuits(_hand1ByValues, i1) || _hand2ByValues.Any(i => i.Count == i1);
+            return HasNumberOfLikeSuits(_hand1.GetHandByValues(), i1) || _hand2.GetHandByValues().Any(i => i.Count == i1);
         }
 
         private static bool HasNumberOfLikeSuits(IEnumerable<OrderedCardList> hand1ByValues, int i1)
@@ -306,13 +294,6 @@ namespace PokerHands
             return iList.Max(x => GetValueFromCard(x.CardValue));
         }
 
-        private static List<OrderedCardList> GetHandByValues(IEnumerable<Card> hand1)
-        {
-            return hand1.GroupBy(i => i.CardValue).Select(g => new OrderedCardList()
-                                                               {
-                                                                       Value = g.Key,
-                                                                       Count = g.Select(v => (int)v.CardValue).Count()
-                                                               }).OrderBy(x => x.Value).ToList();
-        }
+        
     }
 }

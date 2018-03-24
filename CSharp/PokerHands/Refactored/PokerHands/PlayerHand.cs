@@ -19,5 +19,13 @@ namespace PokerHands
         {
             get { return Cards.All(i => i.Suit == Cards.Select(j => j.Suit).FirstOrDefault()); }
         }
+        public List<OrderedCardList> GetHandByValues()
+        {
+            return Cards.GroupBy(i => i.CardValue).Select(g => new OrderedCardList()
+                                                               {
+                                                                   Value = g.Key,
+                                                                   Count = g.Select(v => (int)v.CardValue).Count()
+                                                               }).OrderBy(x => x.Value).ToList();
+        }
     }
 }
