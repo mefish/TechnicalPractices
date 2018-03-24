@@ -15,10 +15,7 @@ namespace PokerHands
             _cardsByValues = GetHandByValues(hand1);
         }
 
-        public bool IsStraight
-        {
-            get { return CheckForStraight(); }
-        }
+        public bool IsStraight => CheckForStraight();
 
         private int LowestCard
         {

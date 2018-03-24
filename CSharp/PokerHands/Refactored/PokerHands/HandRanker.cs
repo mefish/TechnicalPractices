@@ -8,11 +8,9 @@ namespace PokerHands
 //        private IList<Card> _hand1;
         private PlayerHand _hand1;
         private List<OrderedCardList> _hand1ByValues;
-        private bool _hand1Flush;
 //        private IList<Card> _hand2;
         private PlayerHand _hand2;
         private List<OrderedCardList> _hand2ByValues;
-        private bool _hand2Flush;
         private bool _isHand1AStraight;
         private bool _isHand2AStraight;
         private PlayerHandFormatter _hand1Hand;
@@ -36,10 +34,7 @@ namespace PokerHands
 
             _isHand2AStraight = _hand2Hand.IsStraight;
 
-            _hand1Flush = _hand1.IsFlush;
-            _hand2Flush = _hand2.Cards.All(i => i.Suit == _hand2.Cards.Select(j => j.Suit).FirstOrDefault());
-
-            if ((_hand1Flush && _isHand1AStraight) || (_hand2Flush && _isHand2AStraight)) return IHandleSomeWierdKickerRule();
+            if ((_hand1.IsFlush && _isHand1AStraight) || (_hand2.IsFlush && _isHand2AStraight)) return IHandleSomeWierdKickerRule();
 
             if (APlayerHasSomeOfAKind(4)) return HandleFourOfAKind();
 
@@ -50,11 +45,11 @@ namespace PokerHands
                 if (!(_hand1ByValues.Any(i => i.Count == 3) && _hand1ByValues.Any(i => i.Count == 2))) return 2;
             }
 
-            if (_hand1Flush || _hand2Flush)
+            if (_hand1.IsFlush || _hand2.IsFlush)
             {
-                if (_hand1Flush && !_hand2Flush) return 1;
+                if (_hand1.IsFlush && !_hand2.IsFlush) return 1;
 
-                if (!_hand1Flush) return 2;
+                if (!_hand1.IsFlush) return 2;
             }
 
             if (APlayerHasAStraight()) return ProcessStraight();
